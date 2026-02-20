@@ -9,8 +9,9 @@ window.register = function () {
   }
 
   localStorage.setItem("userEmail", email);
-  localStorage.setItem("userPassword", password);
+localStorage.setItem("userPassword", password);
 localStorage.setItem("role", "user");
+
 
 
   alert("Регистрация успешна!");
@@ -54,7 +55,7 @@ function updateStatus() {
 }
 // Установка роли при регистрации
 // (добавь ЭТУ строку внутрь register перед alert)
-localStorage.setItem("role", "user");
+
 
 // Проверка роли
 window.checkRole = function () {
@@ -72,4 +73,13 @@ window.checkRole = function () {
 window.saveName = function () {
 ...
 }
+window.changeEpisode = function (ep) {
+    const player = document.getElementById("player");
 
+    if (ep === 1) {
+        player.src = https://youtube.com/shorts/6zOwYQTOb_c?si=zygdcnBu_uX5oQrf    }
+    if (ep === 2) {
+        player.src = https://youtube.com/shorts/_ONCVX9JCk4?si=Xbs0FA_JKbjeP8ei    }
+    if (ep === 3) {
+        player.src = https://youtube.com/shorts/gb48QzicN8s?si=W5mcU1cQexXDg2V-    }
+};
