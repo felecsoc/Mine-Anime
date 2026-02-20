@@ -28,6 +28,8 @@
 <button onclick="register()">Регистрация</button>
 <button onclick="login()">Вход</button>
 <button onclick="logout()">Выйти</button>
+<button onclick="checkRole()">Проверить роль</button>
+
 
 <p id="userStatus">Вы не вошли</p>
 
@@ -39,8 +41,23 @@
 
 </div>
 </div>
+<script src="script.js"></script>
 
-<script type="module" src="script.js"></script>
+
+  const name = document.getElementById("username").value;
+
+  if (!name) {
+    alert("Введите имя");
+    return;
+  }
+
+  localStorage.setItem("username", name);
+  document.getElementById("welcome").textContent =
+    "Добро пожаловать, " + name + "!";
+};
+
+
+
 
 </body>
 </html>

@@ -10,10 +10,13 @@ window.register = function () {
 
   localStorage.setItem("userEmail", email);
   localStorage.setItem("userPassword", password);
+localStorage.setItem("role", "user");
+
 
   alert("Регистрация успешна!");
   updateStatus();
 };
+
 
 // Вход
 window.login = function () {
@@ -31,27 +34,42 @@ window.login = function () {
   }
 
   updateStatus();
-};
-
-// Выход
-window.logout = function () {
-  localStorage.removeItem("loggedIn");
-  alert("Вы вышли");
-  updateStatus();
-};
-
-// Обновление статуса
 function updateStatus() {
   const status = document.getElementById("userStatus");
+  const registerBtn = document.getElementById("registerBtn");
+  const loginBtn = document.getElementById("loginBtn");
+  const logoutBtn = document.getElementById("logoutBtn");
 
   if (localStorage.getItem("loggedIn") === "true") {
     status.textContent = "Вы вошли ✅";
+    registerBtn.style.display = "none";
+    loginBtn.style.display = "none";
+    logoutBtn.style.display = "inline-block";
   } else {
     status.textContent = "Вы не вошли";
+    registerBtn.style.display = "inline-block";
+    loginBtn.style.display = "inline-block";
+    logoutBtn.style.display = "none";
   }
 }
+// Установка роли при регистрации
+// (добавь ЭТУ строку внутрь register перед alert)
+localStorage.setItem("role", "user");
 
-// Проверка при загрузке страницы
-window.onload = function () {
-  updateStatus();
+// Проверка роли
+window.checkRole = function () {
+  const role = localStorage.getItem("role");
+
+  if (role === "admin") {
+    alert("Вы администратор 👑");
+  } else if (role === "vip") {
+    alert("Вы VIP ⭐️");
+  } else {
+    alert("Обычный пользователь");
+  }
 };
+// Сохранение имени
+window.saveName = function () {
+...
+}
+
