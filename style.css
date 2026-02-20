@@ -1,203 +1,162 @@
-body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #1a1a2e);
-    background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
-    color: white;
-    display: flex;
-    min-height: 100vh;
-}
-
-@keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-.sidebar {
-    width: 220px;
-    background: rgba(0,0,0,0.6);
-    padding: 20px;
-}
-
-.content {
-    flex: 1;
-    padding: 50px;
-    text-align: center;
-}
-
-.title {
-    font-size: 50px;
-    background: linear-gradient(90deg,#ff00cc,#3333ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.btn {
-    display: inline-block;
-   * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Segoe UI', sans-serif;
-    background: #0f0f14;
-    color: white;
-    overflow-x: hidden;
+  font-family: 'Segoe UI', sans-serif;
+  background: #0f0f14;
+  color: white;
+  display: flex;
+  overflow-x: hidden;
 }
 
-/* ===== ДВИГАЮЩИЙСЯ ФОН ===== */
-
+/* ===== АНИМИРОВАННЫЙ ФОН ===== */
 body::before {
-    content: "";
-    position: fixed;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle at 30% 30%, #1a1a2e, #0f0f14 70%);
-    animation: moveBG 20s linear infinite;
-    z-index: -2;
+  content: "";
+  position: fixed;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 30% 30%, #1a1a2e, #0f0f14 70%);
+  animation: moveBG 20s linear infinite;
+  z-index: -2;
 }
 
 @keyframes moveBG {
-    0% { transform: translate(0,0); }
-    50% { transform: translate(-10%, -10%); }
-    100% { transform: translate(0,0); }
+  0% { transform: translate(0,0); }
+  50% { transform: translate(-5%, -5%); }
+  100% { transform: translate(0,0); }
 }
 
-/* ===== HEADER ===== */
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 40px;
-    background: rgba(0,0,0,0.6);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid #222;
+/* ===== SIDEBAR ===== */
+.sidebar {
+  width: 220px;
+  background: rgba(20,20,30,0.9);
+  padding: 20px;
+  border-right: 1px solid #222;
+  min-height: 100vh;
 }
 
-.logo {
-    font-size: 26px;
-    font-weight: bold;
+/* ===== CONTENT ===== */
+.content {
+  flex: 1;
+  text-align: center;
+  padding: 40px;
+  position: relative;
 }
 
-.logo span {
-    color: #ff003c;
-    text-shadow: 0 0 10px #ff003c;
+/* ===== OBITO & AIZEN ===== */
+.content::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 300px;
+  height: 500px;
+  background: url("../img/obito.png") no-repeat bottom left;
+  background-size: contain;
+  opacity: 0.8;
+  pointer-events: none;
 }
 
-nav a {
-    margin-left: 20px;
-    text-decoration: none;
-    color: #aaa;
-    transition: 0.3s;
+.content::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 300px;
+  height: 500px;
+  background: url("../img/aizen.png") no-repeat bottom right;
+  background-size: contain;
+  opacity: 0.8;
+  pointer-events: none;
 }
 
-nav a:hover {
-    color: #ff003c;
+/* ===== ТЕКСТ ===== */
+.title {
+  font-size: 48px;
+  margin-bottom: 10px;
 }
 
-/* ===== HERO ===== */
-
-.hero {
-    position: relative;
-    height: 90vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
+.subtitle {
+  color: #aaa;
+  margin-bottom: 20px;
 }
 
-.character {
-    position: absolute;
-    bottom: 0;
-    height: 85%;
-    transition: transform 0.2s ease;
-    pointer-events: none;
+/* ===== КНОПКИ ===== */
+.btn {
+  display: inline-block;
+  padding: 12px 30px;
+  background: linear-gradient(45deg, crimson, purple);
+  border-radius: 30px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 30px;
+  transition: 0.3s;
 }
 
-.left { left: 0; }
-.right { right: 0; }
-
-.hero-content {
-    text-align: center;
-    z-index: 2;
-    animation: fadeIn 1.5s ease;
+.btn:hover {
+  transform: scale(1.1);
 }
 
-.hero-content h1 {
-    font-size: 50px;
-    margin-bottom: 20px;
+/* ===== PROFILE ===== */
+.profile {
+  margin-top: 20px;
 }
 
-.hero-content p {
-    color: #aaa;
-    margin-bottom: 30px;
+.profile input {
+  display: block;
+  margin: 8px auto;
+  padding: 10px;
+  width: 220px;
+  border-radius: 6px;
+  border: none;
 }
 
-.main-btn {
-    padding: 15px 35px;
-    background: linear-gradient(45deg, #ff003c, #8a00ff);
-    border-radius: 30px;
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    transition: 0.3s;
-    box-shadow: 0 0 20px rgba(255,0,60,0.6);
+.profile button {
+  padding: 8px 15px;
+  margin: 5px;
+  border: none;
+  border-radius: 6px;
+  background: #1f1f2e;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.main-btn:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 40px rgba(255,0,60,1);
+.profile button:hover {
+  background: crimson;
+}
+.leftChar {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 80%;
+  pointer-events: none;
 }
 
-/* ===== WATCH PAGE ===== */
-
-.watch-container {
-    display: flex;
-    padding: 40px;
-    gap: 30px;
+.rightChar {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  height: 80%;
+  pointer-events: none;
+}
+.leftChar {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 80%;
+  pointer-events: none;
 }
 
-.episodes-panel {
-    width: 230px;
-    background: rgba(20,20,30,0.8);
-    padding: 20px;
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
+.rightChar {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  height: 80%;
+  pointer-events: none;
 }
 
-.episodes-panel button {
-    width: 100%;
-    margin-bottom: 10px;
-    padding: 10px;
-    background: #1f1f2e;
-    border: none;
-    color: white;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.episodes-panel button:hover {
-    background: #ff003c;
-    transform: scale(1.05);
-}
-
-.player-area iframe {
-    width: 100%;
-    height: 600px;
-    border-radius: 15px;
-    border: none;
-    box-shadow: 0 0 40px rgba(0,0,0,0.8);
-}
-
-/* ===== АНИМАЦИИ ===== */
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px);}
-    to { opacity: 1; transform: translateY(0);}
-}
