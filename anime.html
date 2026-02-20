@@ -1,22 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>Сезоны</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Смотреть аниме</title>
+
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<header>Моё произведение</header>
+<div class="content">
+<h1 class="title">Сезон 1</h1>
 
-<div class="container">
-  <div class="card">
-    <h2>Сезон 1</h2>
-    <a href="seasons/season1/episode1.html">Серия 1</a><br>
-    <a href="seasons/season1/episode2.html">Серия 2</a>
-  </div>
+<div class="episode-container">
+
+<div class="episodes">
+<button onclick="changeEpisode(1)">Эпизод 1</button>
+<button onclick="changeEpisode(2)">Эпизод 2</button>
+<button onclick="changeEpisode(3)">Эпизод 3</button>
 </div>
 
+<iframe id="player"
+class="video-player"
+src="https://www.youtube.com/embed/6zOwYQTOb_c"
+frameborder="0"
+allowfullscreen>
+</iframe>
+
+</div>
+
+<br>
+<a href="index.html" class="btn">⬅ Назад</a>
+
+</div>
+
+<script src="js/script.js"></script>
 </body>
 </html>
-

@@ -1,4 +1,4 @@
-// =================== РЕГИСТРАЦИЯ ===================
+// РЕГИСТРАЦИЯ
 window.register = function () {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
@@ -11,47 +11,45 @@ window.register = function () {
   localStorage.setItem("userEmail", email);
   localStorage.setItem("userPassword", password);
   localStorage.setItem("role", "user");
+  localStorage.setItem("loggedIn", "true");
 
   alert("Регистрация успешна!");
   updateStatus();
 };
 
-
-// =================== ВХОД ===================
+// ВХОД
 window.login = function () {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
-  const savedEmail = localStorage.getItem("userEmail");
-  const savedPassword = localStorage.getItem("userPassword");
-
-  if (email === savedEmail && password === savedPassword) {
+  if (
+    email === localStorage.getItem("userEmail") &&
+    password === localStorage.getItem("userPassword")
+  ) {
     localStorage.setItem("loggedIn", "true");
     alert("Вы вошли!");
   } else {
-    alert("Неверный email или пароль");
+    alert("Неверные данные");
   }
 
   updateStatus();
 };
 
-
-// =================== ВЫХОД ===================
+// ВЫХОД
 window.logout = function () {
   localStorage.setItem("loggedIn", "false");
   alert("Вы вышли");
   updateStatus();
 };
 
-
-// =================== ОБНОВЛЕНИЕ СТАТУСА ===================
+// СТАТУС
 function updateStatus() {
   const status = document.getElementById("userStatus");
   const registerBtn = document.getElementById("registerBtn");
   const loginBtn = document.getElementById("loginBtn");
   const logoutBtn = document.getElementById("logoutBtn");
 
-  if (!status) return; // чтобы не было ошибки на anime.html
+  if (!status) return;
 
   if (localStorage.getItem("loggedIn") === "true") {
     status.textContent = "Вы вошли ✅";
@@ -66,56 +64,38 @@ function updateStatus() {
   }
 }
 
-
-// =================== ПРОВЕРКА РОЛИ ===================
+// РОЛЬ
 window.checkRole = function () {
-  const role = localStorage.getItem("role");
-
-  if (role === "admin") {
-    alert("Вы администратор 👑");
-  } else if (role === "vip") {
-    alert("Вы VIP ⭐️");
-  } else {
-    alert("Обычный пользователь");
-  }
+  const role = localStorage.getItem("role") || "user";
+  alert("Ваша роль: " + role);
 };
 
-
-// =================== СОХРАНЕНИЕ ИМЕНИ ===================
+// ИМЯ
 window.saveName = function () {
   const name = document.getElementById("username").value;
 
-  if (!name) {
-    alert("Введите имя");
-    return;
-  }
+  if (!name) return;
 
   localStorage.setItem("username", name);
   document.getElementById("welcome").textContent =
     "Добро пожаловать, " + name + "!";
 };
 
-
-// =================== СМЕНА СЕРИИ ===================
+// СЕРИИ
 window.changeEpisode = function (ep) {
   const player = document.getElementById("player");
   if (!player) return;
 
-  if (ep === 1) {
-    player.src = "https://www.youtube.com/embed/6zOwYQTOb_c";
-  }
+  const videos = {
+    1: "6zOwYQTOb_c",
+    2: "_ONCVX9JCk4",
+    3: "gb48QzicN8s"
+  };
 
-  if (ep === 2) {
-    player.src = "https://www.youtube.com/embed/_ONCVX9JCk4";
-  }
-
-  if (ep === 3) {
-    player.src = "https://www.youtube.com/embed/gb48QzicN8s";
-  }
+  player.src = "https://www.youtube.com/embed/" + videos[ep];
 };
 
-
-// =================== ЗАГРУЗКА ПРИ СТАРТЕ ===================
+// ЗАГРУЗКА
 window.onload = function () {
   updateStatus();
 
