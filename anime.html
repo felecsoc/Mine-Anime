@@ -3,37 +3,61 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Смотреть аниме</title>
+<title>Сезон 1</title>
 
-<link rel="stylesheet" href="css/style.css">
+<style>
+body {
+  background: #111;
+  color: white;
+  text-align: center;
+  font-family: Arial;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(45deg, crimson, purple);
+  color: white;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+iframe {
+  margin-top: 20px;
+  width: 90%;
+  max-width: 600px;
+  height: 315px;
+}
+</style>
 </head>
+
 <body>
 
-<div class="content">
-<h1 class="title">Сезон 1</h1>
+<h1>Сезон 1</h1>
 
-<div class="episode-container">
-
-<div class="episodes">
-<button onclick="changeEpisode(1)">Эпизод 1</button>
-<button onclick="changeEpisode(2)">Эпизод 2</button>
-<button onclick="changeEpisode(3)">Эпизод 3</button>
-</div>
+<button onclick="changeEpisode('6zOwYQTOb_c')">Эпизод 1</button>
+<button onclick="changeEpisode('ONCVX9JCk42')">Эпизод 2</button>
+<button onclick="changeEpisode('gb48QziCN8s')">Эпизод 3</button>
 
 <iframe id="player"
-class="video-player"
-src="https://www.youtube.com/embed/6zOwYQTOb_c"
-frameborder="0"
-allowfullscreen>
+src="https://www.youtube-nocookie.com/embed/6zOwYQTOb_c"
+
 </iframe>
 
-</div>
+<br><br>
+<a href="index.html">⬅️ Назад</a>
 
-<br>
-<a href="index.html" class="btn">⬅ Назад</a>
+<script>
+function changeEpisode(id) {
+  document.getElementById("player").src =
+  "https://www.youtube-nocookie.com/embed/" + id;
+}
+</script>
 
-</div>
-
-<script src="js/script.js"></script>
 </body>
 </html>
