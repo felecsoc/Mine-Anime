@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mine Anime</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="sidebar">
+<h2>🛒 Магазин</h2>
+<p>Скоро будет донат</p>
+</div>
+
+<div class="content">
+<h1 class="title">Mine Anime</h1>
+<p class="subtitle">Смотри лучшие аниме онлайн</p>
+
+<a href="anime.html" class="btn">Перейти к сериям</a>
+
+<div class="profile">
+<h3>👤 Профиль</h3>
+
+<input type="email" id="email" placeholder="Email">
+<input type="password" id="password" placeholder="Пароль">
+
+<button onclick="register()">Регистрация</button>
+<button onclick="login()">Вход</button>
+<button onclick="logout()">Выйти</button>
+<button onclick="checkRole()">Проверить роль</button>
+
+
+<p id="userStatus">Вы не вошли</p>
+
+<hr>
+
+<input type="text" id="username" placeholder="Введите имя">
+<button onclick="saveName()">Сохранить</button>
+<p id="welcome"></p>
+
+</div>
+</div>
+<script src="script.js"></script>
+
+
+  const name = document.getElementById("username").value;
+
+  if (!name) {
+    alert("Введите имя");
+    return;
+  }
+
+  localStorage.setItem("username", name);
+  document.getElementById("welcome").textContent =
+    "Добро пожаловать, " + name + "!";
+};
+
+
+
+
+</body>
+</html>
