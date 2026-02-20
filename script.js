@@ -1,4 +1,4 @@
-// Регистрация
+// =================== РЕГИСТРАЦИЯ ===================
 window.register = function () {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
@@ -9,17 +9,15 @@ window.register = function () {
   }
 
   localStorage.setItem("userEmail", email);
-localStorage.setItem("userPassword", password);
-localStorage.setItem("role", "user");
-
-
+  localStorage.setItem("userPassword", password);
+  localStorage.setItem("role", "user");
 
   alert("Регистрация успешна!");
   updateStatus();
 };
 
 
-// Вход
+// =================== ВХОД ===================
 window.login = function () {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
@@ -35,11 +33,25 @@ window.login = function () {
   }
 
   updateStatus();
+};
+
+
+// =================== ВЫХОД ===================
+window.logout = function () {
+  localStorage.setItem("loggedIn", "false");
+  alert("Вы вышли");
+  updateStatus();
+};
+
+
+// =================== ОБНОВЛЕНИЕ СТАТУСА ===================
 function updateStatus() {
   const status = document.getElementById("userStatus");
   const registerBtn = document.getElementById("registerBtn");
   const loginBtn = document.getElementById("loginBtn");
   const logoutBtn = document.getElementById("logoutBtn");
+
+  if (!status) return; // чтобы не было ошибки на anime.html
 
   if (localStorage.getItem("loggedIn") === "true") {
     status.textContent = "Вы вошли ✅";
@@ -53,11 +65,9 @@ function updateStatus() {
     logoutBtn.style.display = "none";
   }
 }
-// Установка роли при регистрации
-// (добавь ЭТУ строку внутрь register перед alert)
 
 
-// Проверка роли
+// =================== ПРОВЕРКА РОЛИ ===================
 window.checkRole = function () {
   const role = localStorage.getItem("role");
 
@@ -69,41 +79,49 @@ window.checkRole = function () {
     alert("Обычный пользователь");
   }
 };
-// Сохранение имени
+
+
+// =================== СОХРАНЕНИЕ ИМЕНИ ===================
 window.saveName = function () {
-    const name = document.getElementById("username").value;
+  const name = document.getElementById("username").value;
 
-    if (!name) {
-        alert("Введите имя");
-        return;
-    }
+  if (!name) {
+    alert("Введите имя");
+    return;
+  }
 
-    localStorage.setItem("username", name);
-    document.getElementById("welcome").textContent =
-        "Добро пожаловать, " + name + "!";
+  localStorage.setItem("username", name);
+  document.getElementById("welcome").textContent =
+    "Добро пожаловать, " + name + "!";
 };
+
+
+// =================== СМЕНА СЕРИИ ===================
 window.changeEpisode = function (ep) {
-    const player = document.getElementById("player");
+  const player = document.getElementById("player");
+  if (!player) return;
 
-    if (ep === 1) {
-        player.src = "https://www.youtube.com/embed/6zOwYQTOb_c";
-    }
+  if (ep === 1) {
+    player.src = "https://www.youtube.com/embed/6zOwYQTOb_c";
+  }
 
-    if (ep === 2) {
-        player.src = "https://www.youtube.com/embed/_ONCVX9JCk4";
-    }
+  if (ep === 2) {
+    player.src = "https://www.youtube.com/embed/_ONCVX9JCk4";
+  }
 
-    if (ep === 3) {
-        player.src = "https://www.youtube.com/embed/gb48QzicN8s";
-    }
+  if (ep === 3) {
+    player.src = "https://www.youtube.com/embed/gb48QzicN8s";
+  }
 };
 
+
+// =================== ЗАГРУЗКА ПРИ СТАРТЕ ===================
 window.onload = function () {
-    const savedName = localStorage.getItem("username");
+  updateStatus();
 
-    if (savedName) {
-        document.getElementById("welcome").textContent =
-            "Добро пожаловать, " + savedName + "!";
-    }
+  const savedName = localStorage.getItem("username");
+  if (savedName && document.getElementById("welcome")) {
+    document.getElementById("welcome").textContent =
+      "Добро пожаловать, " + savedName + "!";
+  }
 };
-
