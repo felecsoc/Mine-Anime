@@ -5,16 +5,113 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mine Anime</title>
 
-<link rel="stylesheet" href="style.css">
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: radial-gradient(circle at top, #1a1a2e, #0f0f1a);
+  color: white;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+/* Заголовок */
+.title {
+  font-size: 60px;
+  margin-top: 80px;
+  text-shadow: 0 0 20px rgba(255,0,255,0.7);
+}
+
+.subtitle {
+  opacity: 0.8;
+  margin-bottom: 30px;
+}
+
+/* Кнопка */
+.btn {
+  display: inline-block;
+  padding: 15px 40px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 40px;
+  text-decoration: none;
+  color: white;
+  background: linear-gradient(45deg, #ff0055, #9900ff);
+  box-shadow: 0 0 20px rgba(255, 0, 150, 0.6);
+  transition: 0.3s;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 40px rgba(255, 0, 200, 1);
+}
+
+/* Профиль */
+.profile {
+  margin-top: 40px;
+}
+
+.profile input {
+  display: block;
+  margin: 10px auto;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  width: 250px;
+}
+
+.profile button {
+  margin: 5px;
+  padding: 8px 15px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Персонажи */
+.leftChar {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 90vh;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.rightChar {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  height: 90vh;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Адаптив */
+@media (max-width: 900px) {
+  .leftChar, .rightChar {
+    display: none;
+  }
+
+  .title {
+    font-size: 40px;
+  }
+}
+</style>
 </head>
+
 <body>
 
-<div class="sidebar">
-<h2>🛒 Магазин</h2>
-<p>Скоро будет </p>
-</div>
+<img src="img/obito.png" class="leftChar">
+<img src="img/aizen.png" class="rightChar">
 
 <div class="content">
+
 <h1 class="title">Mine Anime</h1>
 <p class="subtitle">Смотри лучшие аниме онлайн</p>
 
@@ -26,10 +123,9 @@
 <input type="email" id="email" placeholder="Email">
 <input type="password" id="password" placeholder="Пароль">
 
-<button id="registerBtn" onclick="register()">Регистрация</button>
-<button id="loginBtn" onclick="login()">Вход</button>
-<button id="logoutBtn" onclick="logout()">Выйти</button>
-<button onclick="checkRole()">Проверить роль</button>
+<button onclick="register()">Регистрация</button>
+<button onclick="login()">Вход</button>
+<button onclick="logout()">Выход</button>
 
 <p id="userStatus">Вы не вошли</p>
 
@@ -38,19 +134,11 @@
 <input type="text" id="username" placeholder="Введите имя">
 <button onclick="saveName()">Сохранить имя</button>
 <p id="welcome"></p>
-</div> <!-- закрыли profile -->
-
-<div class="content">
-
-<img src="img/obito.png" class="leftChar">
-<img src="img/aizen.png" class="rightChar">
-
-<h1 class="title">Mine Anime</h1>
-
 
 </div>
 </div>
 
 <script src="script.js"></script>
+
 </body>
 </html>
