@@ -25,9 +25,9 @@
 <input type="email" id="email" placeholder="Email">
 <input type="password" id="password" placeholder="Пароль">
 
-<button onclick="register()">Регистрация</button>
-<button onclick="login()">Вход</button>
-<button onclick="logout()">Выйти</button>
+<button id="registerBtn" onclick="register()">Регистрация</button>
+<button id="loginBtn" onclick="login()">Вход</button>
+<button id="logoutBtn" onclick="logout()">Выйти</button>
 <button onclick="checkRole()">Проверить роль</button>
 
 
@@ -44,17 +44,7 @@
 <script src="script.js"></script>
 
 
-  const name = document.getElementById("username").value;
-
-  if (!name) {
-    alert("Введите имя");
-    return;
-  }
-
-  localStorage.setItem("username", name);
-  document.getElementById("welcome").textContent =
-    "Добро пожаловать, " + name + "!";
-};
+ 
 
 
 

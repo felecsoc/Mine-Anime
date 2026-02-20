@@ -71,15 +71,39 @@ window.checkRole = function () {
 };
 // Сохранение имени
 window.saveName = function () {
-...
-}
+    const name = document.getElementById("username").value;
+
+    if (!name) {
+        alert("Введите имя");
+        return;
+    }
+
+    localStorage.setItem("username", name);
+    document.getElementById("welcome").textContent =
+        "Добро пожаловать, " + name + "!";
+};
 window.changeEpisode = function (ep) {
     const player = document.getElementById("player");
 
     if (ep === 1) {
-        player.src = https://youtube.com/shorts/6zOwYQTOb_c?si=zygdcnBu_uX5oQrf    }
+        player.src = "https://www.youtube.com/embed/6zOwYQTOb_c";
+    }
+
     if (ep === 2) {
-        player.src = https://youtube.com/shorts/_ONCVX9JCk4?si=Xbs0FA_JKbjeP8ei    }
+        player.src = "https://www.youtube.com/embed/_ONCVX9JCk4";
+    }
+
     if (ep === 3) {
-        player.src = https://youtube.com/shorts/gb48QzicN8s?si=W5mcU1cQexXDg2V-    }
+        player.src = "https://www.youtube.com/embed/gb48QzicN8s";
+    }
 };
+
+window.onload = function () {
+    const savedName = localStorage.getItem("username");
+
+    if (savedName) {
+        document.getElementById("welcome").textContent =
+            "Добро пожаловать, " + savedName + "!";
+    }
+};
+
