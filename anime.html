@@ -13,25 +13,20 @@ body {
   font-family: Arial;
 }
 
-button {
-  padding: 10px 20px;
-  margin: 5px;
-  border-radius: 20px;
-  border: none;
-  cursor: pointer;
+.watchBtn {
+  display: inline-block;
+  padding: 15px 30px;
+  margin: 15px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
   background: linear-gradient(45deg, crimson, purple);
   color: white;
+  transition: 0.3s;
 }
 
-button:hover {
+.watchBtn:hover {
   transform: scale(1.1);
-}
-
-iframe {
-  margin-top: 20px;
-  width: 90%;
-  max-width: 600px;
-  height: 315px;
 }
 </style>
 </head>
@@ -40,24 +35,21 @@ iframe {
 
 <h1>Сезон 1</h1>
 
-<button onclick="changeEpisode('6zOwYQTOb_c')">Эпизод 1</button>
-<button onclick="changeEpisode('ONCVX9JCk42')">Эпизод 2</button>
-<button onclick="changeEpisode('gb48QziCN8s')">Эпизод 3</button>
+<a href="https://www.youtube.com/watch?v=6zOwYQTOb_c" target="_blank" class="watchBtn">
+▶️ Эпизод 1
+</a>
 
-<iframe id="player"
-src="https://www.youtube-nocookie.com/embed/6zOwYQTOb_c"
+<a href="https://www.youtube.com/watch?v=ONCVX9JCk42" target="_blank" class="watchBtn">
+▶️ Эпизод 2
+</a>
 
-</iframe>
+<a href="https://www.youtube.com/watch?v=gb48QziCN8s" target="_blank" class="watchBtn">
+▶️ Эпизод 3
+</a>
 
 <br><br>
-<a href="index.html">⬅️ Назад</a>
 
-<script>
-function changeEpisode(id) {
-  document.getElementById("player").src =
-  "https://www.youtube-nocookie.com/embed/" + id;
-}
-</script>
+<a href="index.html" style="color:white;">⬅️ Назад</a>
 
 </body>
 </html>
