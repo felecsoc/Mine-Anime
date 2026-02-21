@@ -1,89 +1,114 @@
-// ===== РЕГИСТРАЦИЯ =====
-function register() {
-  const email = document.getElementById("email")?.value;
-  const password = document.getElementById("password")?.value;
+// ======= Регистрация =======
 
-  if (!email || !password) {
-    alert("Введите email и пароль");
-    return;
-  }
+function register() {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  if (!email || !password) return alert("Заполни поля");
 
   localStorage.setItem("userEmail", email);
   localStorage.setItem("userPassword", password);
-  localStorage.setItem("role", "user");
-  localStorage.setItem("loggedIn", "true");
 
-  alert("Регистрация успешна ✅");
-  updateStatus();
+  alert("Регистрация успешна!");
 }
 
-// ===== ВХОД =====
 function login() {
-  const email = document.getElementById("email")?.value;
-  const password = document.getElementById("password")?.value;
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
 
-  if (
-    email === localStorage.getItem("userEmail") &&
-    password === localStorage.getItem("userPassword")
-  ) {
-    localStorage.setItem("loggedIn", "true");
-    alert("Вы вошли ✅");
+  const savedEmail = localStorage.getItem("userEmail");
+  const savedPassword = localStorage.getItem("userPassword");
+
+  if (email === savedEmail && password === savedPassword) {
+    localStorage.setItem("loggedIn", true);
+    updateStatus();
   } else {
-    alert("Неверные данные ❌");
+    alert("Неверные данные");
   }
-
-  updateStatus();
 }
 
-// ===== ВЫХОД =====
 function logout() {
-  localStorage.setItem("loggedIn", "false");
+  localStorage.removeItem("loggedIn");
   updateStatus();
 }
 
-// ===== ПРОВЕРКА РОЛИ =====
-function checkRole() {
-  const role = localStorage.getItem("role") || "user";
-  alert("Ваша роль: " + role);
-}
-
-// ===== СОХРАНЕНИЕ ИМЕНИ =====
-function saveName() {
-  const name = document.getElementById("username")?.value;
-  if (!name) return;
-
-  localStorage.setItem("username", name);
-  document.getElementById("welcome").textContent =
-    "Добро пожаловать, " + name + " 👋";
-}
-
-// ===== СТАТУС =====
 function updateStatus() {
   const status = document.getElementById("userStatus");
-  if (!status) return;
+  const welcome = document.getElementById("welcome");
+  const name = localStorage.getItem("username");
 
-  if (localStorage.getItem("loggedIn") === "true") {
-    status.textContent = "Вы вошли ✅";
+  if (localStorage.getItem("loggedIn")) {
+    status.innerText = "✅ Вы вошли";
+    if (name) welcome.innerText = "Добро пожаловать, " + name;
   } else {
-    status.textContent = "Вы не вошли";
+    if(status) status.innerText = "Вы не вошли";
+    if(welcome) welcome.innerText = "";
   }
 }
 
-// ===== ПАРАЛЛАКС ЭФФЕКТ =====
-document.addEventListener("mousemove", function(e) {
-  const content = document.querySelector(".content");
-  const x = (window.innerWidth / 2 - e.clientX) / 100;
-  const y = (window.innerHeight / 2 - e.clientY) / 100;
-  content.style.transform = XXXINLINECODEXXX2XXXINLINECODEXXX;
-});
-
-// ===== ЗАГРУЗКА =====
-window.onload = function() {
+function saveName() {
+  const username = document.getElementById("username").value;
+  localStorage.setItem("username", username);
   updateStatus();
+}
 
-  const savedName = localStorage.getItem("username");
-  if (savedName) {
-    document.getElementById("welcome").textContent =
-      "Добро пожаловать, " + savedName + " 👋";
-  }
+// ======= Сезоны и серии =======
+
+const seasons = {
+  1: [
+    {id:"6zOwYQTOb_c", title:"Эпизод 1"},
+    {id:"ONCVX9JCk42", title:"Эпизод 2"},
+    {id:"gb48QziCN8s", title:"Эпизод 3"}
+  ],
+  2: [
+    {id:"6zOwYQTOb_c", title:"Эпизод 1"},
+    {id:"ONCVX9JCk42", title:"Эпизод 2"}
+  ]
 };
+
+function createCards() {
+  for (let s in seasons) {
+    const container = document.getElementById("season"+s);
+    if (!container) continue;
+
+    container.innerHTML = "";
+
+    seasons[s].forEach(ep => {
+      const watched = localStorage.getItem(ep.id);
+
+      container.innerHTML += `
+        <div class="card">
+          <img src="https://img.youtube.com/vi/${ep.id}/hqdefault.jpg">
+          <div class="cardContent">
+            <h3>${ep.title}</h3>
+            <a href="https://www.youtube.com/watch?v=${ep.id}" 
+               target="_blank" 
+               class="watchBtn"
+               onclick="markWatched('${ep.id}')">
+               ▶ Смотреть
+            </a>
+            <div class="watched">
+              ${watched ? "✅ Смотрел" : ""}
+            </div>
+          </div>
+        </div>
+      `;
+    });
+  }
+}
+
+function markWatched(id) {
+  localStorage.setItem(id, true);
+}
+
+function showSeason(num) {
+  document.querySelectorAll(".season").forEach(el=>el.classList.remove("activeSeasonBlock"));
+  document.querySelectorAll(".seasonSwitch button").forEach(el=>el.classList.remove("activeSeason"));
+
+  document.getElementById("season"+num).classList.add("activeSeasonBlock");
+  document.getElementById("s"+num).classList.add("activeSeason");
+}
+
+// Запуск
+updateStatus();
+createCards();

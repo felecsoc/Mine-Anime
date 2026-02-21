@@ -1,196 +1,106 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background: #0f0f14;
+  margin: 0;
+  background: #0f0f0f;
   color: white;
-  display: flex;
-  overflow-x: hidden;
-}
-
-/* ===== АНИМИРОВАННЫЙ ФОН ===== */
-body::before {
-  content: "";
-  position: fixed;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle at 30% 30%, #1a1a2e, #0f0f14 70%);
-  animation: moveBG 20s linear infinite;
-  z-index: -2;
-}
-
-@keyframes moveBG {
-  0% { transform: translate(0,0); }
-  50% { transform: translate(-5%, -5%); }
-  100% { transform: translate(0,0); }
-}
-
-/* ===== SIDEBAR ===== */
-.sidebar {
-  width: 220px;
-  background: rgba(20,20,30,0.9);
-  padding: 20px;
-  border-right: 1px solid #222;
-  min-height: 100vh;
-}
-
-/* ===== CONTENT ===== */
-.content {
-  flex: 1;
+  font-family: Arial;
   text-align: center;
-  padding: 40px;
-  position: relative;
 }
 
-/* ===== OBITO & AIZEN ===== */
-.content::before {
-  content: "";
-  position: absolute;
-  left: 0;
+.container {
+  padding: 20px;
+}
+
+.leftChar, .rightChar {
+  position: fixed;
   bottom: 0;
-  width: 300px;
-  height: 500px;
-  background: url("../img/obito.png") no-repeat bottom left;
-  background-size: contain;
-  opacity: 0.8;
-  pointer-events: none;
+  height: 90%;
+  z-index: -1;
+  opacity: 0.25;
 }
 
-.content::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 300px;
-  height: 500px;
-  background: url("../img/aizen.png") no-repeat bottom right;
-  background-size: contain;
-  opacity: 0.8;
-  pointer-events: none;
+.leftChar { left: 0; }
+.rightChar { right: 0; }
+
+@media (max-width: 900px) {
+  .leftChar, .rightChar { display: none; }
 }
 
-/* ===== ТЕКСТ ===== */
-.title {
-  font-size: 48px;
-  margin-bottom: 10px;
+input {
+  padding: 10px;
+  margin: 5px;
+  border-radius: 10px;
+  border: none;
 }
 
-.subtitle {
-  color: #aaa;
-  margin-bottom: 20px;
-}
-
-/* ===== КНОПКИ ===== */
-.btn {
+button, .mainBtn {
   display: inline-block;
-  padding: 12px 30px;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
   background: linear-gradient(45deg, crimson, purple);
-  border-radius: 30px;
-  text-decoration: none;
   color: white;
-  font-weight: bold;
-  margin-bottom: 30px;
+  text-decoration: none;
   transition: 0.3s;
 }
 
-.btn:hover {
+button:hover, .mainBtn:hover {
   transform: scale(1.1);
 }
 
-/* ===== PROFILE ===== */
 .profile {
+  margin-top: 30px;
+}
+
+.seasonSwitch button {
+  background: #333;
+}
+
+.activeSeason {
+  background: linear-gradient(45deg, crimson, purple);
+}
+
+.season {
+  display: none;
   margin-top: 20px;
 }
 
-.profile input {
+.activeSeasonBlock {
   display: block;
-  margin: 8px auto;
-  padding: 10px;
-  width: 220px;
-  border-radius: 6px;
-  border: none;
 }
 
-.profile button {
-  padding: 8px 15px;
-  margin: 5px;
-  border: none;
-  border-radius: 6px;
-  background: #1f1f2e;
-  color: white;
-  cursor: pointer;
+.card {
+  background: #1a1a1a;
+  border-radius: 15px;
+  margin: 15px auto;
+  max-width: 400px;
+  overflow: hidden;
   transition: 0.3s;
 }
 
-.profile button:hover {
-  background: crimson;
-}
-.leftChar {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  height: 80%;
-  pointer-events: none;
+.card:hover {
+  transform: scale(1.05);
 }
 
-.rightChar {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  height: 80%;
-  pointer-events: none;
-}
-.leftChar {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  height: 80%;
-  pointer-events: none;
+.card img {
+  width: 100%;
 }
 
-.rightChar {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  height: 80%;
-  pointer-events: none;
+.cardContent {
+  padding: 15px;
 }
-.content {
-  position: relative;
-  z-index: 2;
-}
+
 .watchBtn {
   display: inline-block;
-  padding: 12px 30px;
-  background: linear-gradient(45deg, red, purple);
-  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
   text-decoration: none;
-  border-radius: 25px;
-  font-weight: bold;
-  transition: 0.3s;
-}
-
-.watchBtn:hover {
-  transform: scale(1.1);
-}
-.watchBtn {
-  display: inline-block;
-  padding: 15px 30px;
-  margin: 15px;
-  background: linear-gradient(45deg, #ff0066, #9900ff);
+  background: linear-gradient(45deg, crimson, purple);
   color: white;
-  text-decoration: none;
-  border-radius: 30px;
-  font-weight: bold;
-  transition: 0.3s;
 }
 
-.watchBtn:hover {
-  transform: scale(1.1);
+.watched {
+  margin-top: 10px;
+  color: lime;
 }
-
-

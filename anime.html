@@ -3,53 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Сезон 1</title>
-
-<style>
-body {
-  background: #111;
-  color: white;
-  text-align: center;
-  font-family: Arial;
-}
-
-.watchBtn {
-  display: inline-block;
-  padding: 15px 30px;
-  margin: 15px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: bold;
-  background: linear-gradient(45deg, crimson, purple);
-  color: white;
-  transition: 0.3s;
-}
-
-.watchBtn:hover {
-  transform: scale(1.1);
-}
-</style>
+<title>Mine Anime</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<h1>Сезон 1</h1>
+<img src="v.img/aizen.png" class="leftChar">
+<img src="v.img/obito.png" class="rightChar">
 
-<a href="https://www.youtube.com/watch?v=6zOwYQTOb_c" target="_blank" class="watchBtn">
-▶️ Эпизод 1
-</a>
+<div class="container">
 
-<a href="https://www.youtube.com/watch?v=ONCVX9JCk42" target="_blank" class="watchBtn">
-▶️ Эпизод 2
-</a>
+<h1>Mine Anime</h1>
 
-<a href="https://www.youtube.com/watch?v=gb48QziCN8s" target="_blank" class="watchBtn">
-▶️ Эпизод 3
-</a>
+<div class="seasonSwitch">
+<button onclick="showSeason(1)" id="s1" class="activeSeason">Сезон 1</button>
+<button onclick="showSeason(2)" id="s2">Сезон 2</button>
+</div>
 
-<br><br>
+<div id="season1" class="season activeSeasonBlock"></div>
+<div id="season2" class="season"></div>
 
-<a href="index.html" style="color:white;">⬅️ Назад</a>
+<br>
+<a href="index.html" class="mainBtn">⬅ Назад</a>
 
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
